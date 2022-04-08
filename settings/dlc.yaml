@@ -1,0 +1,24 @@
+providers:
+  - github:
+      fetch: http://github.com/$user/$repo/zipball/master/
+      pages: https://$user.github.io/$repo/
+      readme: https://raw.githubusercontent.com/$user/$repo/master/README.md
+
+sources: 
+  - source: github
+    user: dougreichard
+    repo: sbs_example
+    readme: true
+    
+  - source: github
+    user: dougreichard
+    repo: sbs_example
+    readme: false
+
+  - source: github
+    user: aretmis-sbs
+    repo: sbs_example
+    readme: false
+    markdown: |
+      # Test Description
+      This is a description in the yaml
