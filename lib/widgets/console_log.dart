@@ -1,8 +1,39 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:miss/context.dart';
+
+Future<void> showLog(BuildContext context, Context ctx) async {
+  await showDialog<void>(
+    context: context,
+    builder: (BuildContext context) => TextDisplay("directoryPath", ctx),
+  );
+}
+
+/// Widget that displays a text file in a dialog
+class TextDisplay extends StatelessWidget {
+  /// Default Constructor
+  const TextDisplay(this.directoryPath, this.ctx);
+
+  /// Directory path
+  final String directoryPath;
+  final Context ctx;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Console log'),
+      content: SizedBox(width: 640, height: 480,
+        child: ConsoleLog(ctx: ctx)),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Close'),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ],
+    );
+  }
+}
 
 class ConsoleLog extends StatefulWidget {
   const ConsoleLog({

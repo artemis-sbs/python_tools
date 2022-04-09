@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:miss/context.dart';
 import 'package:miss/pages/config_page.dart';
 import 'package:miss/pages/create_page.dart';
-import 'package:miss/pages/dlc_page.dart';
 import 'package:miss/pages/dev_page.dart';
 import 'package:miss/widgets/console_log.dart';
 
@@ -36,21 +34,22 @@ class _MyAppState extends State<MyApp> {
     ctx.load().then((_) {
       processDoctor(ctx).then((value) => setState(() {
             _pages = [
-              buildSetup(),
-              DlcPage(ctx:ctx),
-              CreatePage(ctx: ctx),
-              DevPage(ctx:ctx),
+              ConfigPage(ctx: ctx),
+              CreatePage( key: UniqueKey(), ctx: ctx, file: 'settings/dlc.yaml', help: 'Dlc'),
+              CreatePage( key: UniqueKey(),ctx: ctx, file: 'settings/starter.yaml', help: 'Starter'),
+              DevPage(ctx: ctx),
             ];
           }));
     });
     super.initState();
   }
 
-  Column buildSetup() {
-    return Column(children: [
-      ConfigPage(ctx: ctx),
-      ConsoleLog(ctx: ctx),
-    ]);
+  ConfigPage buildSetup() {
+    return ConfigPage(ctx: ctx);
+    // Column(children: [
+    //   ConfigPage(ctx: ctx),
+    //   // ConsoleLog(ctx: ctx),
+    // ]);
   }
 
   void _onItemTapped(int index) {
@@ -96,4 +95,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-

@@ -22,15 +22,15 @@ Future<void> processInstallBatch(Context ctx, String? s) async {
   var missionPath = p.join(ctx.basedir, 'data', 'missions', s);
   var batchFile = p.join(missionPath, 'pip_install.bat');
 
-  await runBatch(ctx, batchFixPip, batchFile, false);
+  await runBatch(ctx, batchFixPip, batchFile, [], false);
 }
 
-Future<void> runBatch(Context ctx, String batch, String batchFile, bool cleanup) async {
+Future<void> runBatch(Context ctx, String batch, String batchFile, List<String> args, bool cleanup) async {
   File f = File(batchFile);
   if (!await f.exists()) {
     await f.writeAsString(batch);
   }
-  final process = await Process.start(batchFile, []);
+  final process = await Process.start(batchFile, args);
 
   await ctx.cout.addStream(process.stdout.transform(utf8.decoder));
   await ctx.cerr.addStream(process.stderr.transform(utf8.decoder));

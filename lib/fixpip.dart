@@ -8,8 +8,7 @@ import 'dart:io';
 import 'package:miss/web.dart';
 
 String batch = r"""
-REM @echo off
- @cd /D "%~dp0"
+ cd /D "%~dp0"
  curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
  .\PyRuntime\python get-pip.py
  if exist get-pip.py (
@@ -23,9 +22,9 @@ Artemis Cosmos does not ship with PIP the a tool to manage dependcies.
 
 PIP can be added using the batch file dispayed below.
 
-By pressing the 'Fix PIP' button this will be run adding pip to Artemis Cosmos.
+By pressing the 'Install PIP' button this will be run adding pip to Artemis Cosmos.
 
-This is only need to be run once for a Artemis Cosoms install.
+This is only needs to be run once for an Artemis Cosoms install.
 
 Alternatively you can copy the batch file, or run the commands yourself.
 
@@ -36,7 +35,7 @@ $batch
 
 Future<void> processFixPipBatch(Context ctx) async {
   var batchFile = p.join(ctx.basedir, 'pip_install.bat');
-  runBatch(ctx, batchFile, ctx.basedir, true);
+  runBatch(ctx, batch, batchFile, [], true);
 }
 /*
 Future<void> processFixPip(Context ctx) async {

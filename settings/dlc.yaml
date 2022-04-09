@@ -12,7 +12,7 @@ sources:
     
   - source: github
     user: dougreichard
-    repo: sbs_example
+    repo: sbs_example_one
     readme: false
 
   - source: github
