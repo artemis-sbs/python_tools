@@ -6,19 +6,7 @@ providers:
 
 sources: 
   - source: github
-    user: dougreichard
+    user: artemis-sbs
     repo: sbs_example
     readme: true
     
-  - source: github
-    user: dougreichard
-    repo: sbs_example_one
-    readme: false
-
-  - source: github
-    user: aretmis-sbs
-    repo: sbs_example
-    readme: false
-    markdown: |
-      # Test Description
-      This is a description in the yaml

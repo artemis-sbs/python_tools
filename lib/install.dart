@@ -21,8 +21,12 @@ String batchFixPip = r"""
 Future<void> processInstallBatch(Context ctx, String? s) async {
   var missionPath = p.join(ctx.basedir, 'data', 'missions', s);
   var batchFile = p.join(missionPath, 'pip_install.bat');
+  var reqFile = p.join(missionPath, 'requirements.txt');
+  
+  if (await File(reqFile).exists()) {
+    await runBatch(ctx, batchFixPip, batchFile, [], false);
+  }
 
-  await runBatch(ctx, batchFixPip, batchFile, [], false);
 }
 
 Future<void> runBatch(Context ctx, String batch, String batchFile, List<String> args, bool cleanup) async {

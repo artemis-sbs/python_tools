@@ -26,5 +26,6 @@ Future<void> processFetchMission(
 
   var missionPath = p.join(ctx.basedir, 'data', 'missions', 'fetch.bat');
 
-  runBatch(ctx, batch, missionPath, [user, repo, mission], true);
+  await runBatch(ctx, batch, missionPath, [user, repo, mission], true);
+  await processInstallBatch(ctx, mission);
 }
